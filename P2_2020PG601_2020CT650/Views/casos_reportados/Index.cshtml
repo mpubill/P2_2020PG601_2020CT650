@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="m-3 text-center">
+    <h1>Registro de covid</h1>
+    <h3>El siguiente formulario es para llevar el registro de casos reportados de Covid por departamento y género</h3>
+</div>
+<div class="row mb-2">
+    <h4>Reportar casos</h4>
+</div>
+<form asp-action="Create">
+    <div class="form-group row mb-4">
+        <div class="col-sm-6">
+            <div class="row">
+                 @Html.Label("lblDepartamento", "Departamento")
+            </div>
+            <div class="row m-1">
+                @Html.DropDownList("departamentoId", ViewData["ListadoDeDepartamento"] as SelectList, "Seleccione un departamento", new {@class="form-control"})
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                @Html.Label("lblGenero", "Género")
+            </div>
+            <div class="row m-1">
+                @Html.DropDownList("generoId", ViewData["ListadoDeGenero"] as SelectList, "Seleccione un género", new {@class="form-control"})
+            </div>
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-4">
+            <div class="row">
+                @Html.Label("lblConfirmados", "Casos Confirmados")
+            </div>
+            <div class="row m-2">
+                @Html.TextBox("confirmados", "", new {@class="form-control"})
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                @Html.Label("lblRecuperados", "Recuperados")
+            </div>
+            <div class="row m-2">
+                @Html.TextBox("recuperados", "", new {@class="form-control"})
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                @Html.Label("lblFallecidos", "Número de fallecidos")
+            </div>
+            <div class="row m-2">
+                @Html.TextBox("fallecidos", "", new {@class="form-control"})
+            </div>
+        </div>
+    </div>
+    <div class="row m-2">
+        <input type="submit" class="btn btn-success" value="Guardar" />
+    </div>
+    <br />
+    <div class="card">
+      <div class="card-header">
+            Casos Reportados
+      </div>
+      <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Departamento</th>
+                        <th>Género</th>
+                        <th>Confirmados</th>
+                        <th>Recuperados</th>
+                        <th>Fallecidos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var casos in (IEnumerable<dynamic>)ViewData["listadoDeCasos"])
+                    {
+                        <tr>
+                            <td>@casos.departamento</td>
+                            <td>@casos.genero</td>
+                            <td>@casos.confirmados</td>
+                            <td>@casos.recuperados</td>
+                            <td>@casos.fallecidos</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+      </div>
+    </div>
+    
+</form>
+
