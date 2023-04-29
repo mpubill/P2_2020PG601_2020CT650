@@ -1,0 +1,30 @@
+﻿CREATE DATABASE covid; 
+go
+USE covid; 
+go
+
+CREATE TABLE departamento(
+	departamentoId int identity primary key, 
+	nombreDepartamento varchar(30)); 
+	go
+
+CREATE TABLE genero(
+	generoId int identity primary key, 
+	nombreGenero varchar(30)); 
+	go
+
+CREATE TABLE casos_reportados(
+	casoId int identity primary key, 
+	departamentoId int, 
+	generoId int,
+	confirmados int, 
+	recuperados int, 
+	fallecidos int
+); 
+go
+
+insert into departamento VALUES ('Santa Ana');
+insert into departamento VALUES ('San Miguel');
+
+insert into genero VALUES ('Masculino');
+insert into genero VALUES ('Femenino');
